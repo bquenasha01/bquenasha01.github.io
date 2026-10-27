@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quenasha Byrd | Portfolio</title>
-<meta name="description" content="Portfolio of Quenasha Byrd">
+<title>Quenasha Byrd | Software Engineer</title>
+<meta name="description" content="Portfolio of Quenasha Byrd, software engineer focused on production systems, backend services, debugging and cloud.">
 <style>
   :root {
     --bg: #fafaf9;
@@ -12,6 +12,7 @@
     --text: #1c1917;
     --muted: #57534e;
     --accent: #0f766e;
+    --accent-soft: #ccfbf1;
     --border: #e7e5e4;
   }
   @media (prefers-color-scheme: dark) {
@@ -21,60 +22,126 @@
       --text: #f5f5f4;
       --muted: #a8a29e;
       --accent: #5eead4;
+      --accent-soft: #134e4a;
       --border: #2e2c29;
     }
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.65;
   }
-  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
-  header.hero { padding: 72px 0 40px; }
-  .hero h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 0 0 8px; letter-spacing: -0.02em; }
-  .hero .role { color: var(--accent); font-weight: 600; margin: 0 0 16px; }
-  .hero p.lead { color: var(--muted); max-width: 60ch; margin: 0 0 24px; }
+  a { color: var(--accent); }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; gap: 20px; overflow-x: auto; padding-top: 12px; padding-bottom: 12px; }
+  nav a { text-decoration: none; color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
+  nav a:hover { color: var(--accent); }
+
+  header.hero { padding: 72px 0 44px; }
+  .hero h1 { font-size: clamp(2.2rem, 7vw, 3.4rem); margin: 0 0 8px; letter-spacing: -0.03em; line-height: 1.1; }
+  .hero .role { color: var(--accent); font-weight: 600; margin: 0 0 6px; font-size: 1.1rem; }
+  .hero .loc { color: var(--muted); margin: 0 0 20px; font-size: 0.95rem; }
+  .hero p.lead { color: var(--muted); max-width: 66ch; margin: 0 0 26px; font-size: 1.05rem; }
   .links { display: flex; flex-wrap: wrap; gap: 10px; }
   .links a {
     text-decoration: none; color: var(--text);
     border: 1px solid var(--border); background: var(--surface);
-    padding: 8px 16px; border-radius: 999px; font-size: 0.95rem;
+    padding: 9px 18px; border-radius: 999px; font-size: 0.95rem;
   }
   .links a:hover { border-color: var(--accent); color: var(--accent); }
-  section { padding: 32px 0; border-top: 1px solid var(--border); }
-  h2 { font-size: 1.25rem; margin: 0 0 20px; }
-  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .links a.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .links a.primary:hover { opacity: 0.9; color: var(--bg); }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 36px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .stat b { display: block; font-size: 1.5rem; color: var(--accent); letter-spacing: -0.02em; }
+  .stat span { color: var(--muted); font-size: 0.85rem; }
+
+  section { padding: 40px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 1.4rem; margin: 0 0 24px; letter-spacing: -0.01em; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
   .card {
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; padding: 20px;
+    border-radius: 14px; padding: 22px;
   }
-  .card h3 { margin: 0 0 6px; font-size: 1.05rem; }
-  .card p { margin: 0 0 12px; color: var(--muted); font-size: 0.95rem; }
-  .card a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .card h3 { margin: 0 0 8px; font-size: 1.08rem; }
+  .card p { margin: 0 0 14px; color: var(--muted); font-size: 0.95rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tags span {
-    background: var(--surface); border: 1px solid var(--border);
-    padding: 4px 12px; border-radius: 6px; font-size: 0.9rem;
+    background: var(--accent-soft); color: var(--text);
+    padding: 3px 10px; border-radius: 6px; font-size: 0.8rem;
   }
-  footer { padding: 32px 0 56px; color: var(--muted); font-size: 0.9rem; }
-  /* Remove the yellow highlight once you've replaced each placeholder */
-  .todo { background: #fef08a; color: #1c1917; padding: 0 4px; border-radius: 3px; }
+
+  .timeline { border-left: 2px solid var(--border); margin-left: 6px; padding-left: 26px; }
+  .job { position: relative; margin-bottom: 34px; }
+  .job::before {
+    content: ""; position: absolute; left: -33px; top: 8px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+  }
+  .job h3 { margin: 0; font-size: 1.1rem; }
+  .job .co { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+  .job .meta { color: var(--muted); font-size: 0.85rem; margin: 2px 0 10px; }
+  .job ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.95rem; }
+  .job li { margin-bottom: 6px; }
+
+  .skills { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .skills h3 { margin: 0 0 10px; font-size: 0.95rem; }
+  .skills .tags span { background: var(--surface); border: 1px solid var(--border); font-size: 0.85rem; }
+
+  .two { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+  .card .when { color: var(--muted); font-size: 0.85rem; margin: 0; }
+  ul.plain { margin: 0; padding-left: 18px; color: var(--muted); }
+
+  footer { padding: 32px 0 60px; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--border); }
 </style>
 </head>
 <body>
 
-<header class="hero">
+<nav>
+  <div class="wrap">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="about">
   <div class="wrap">
     <h1>Quenasha Byrd</h1>
-    <p class="role"><span class="todo">[Your job title or the role you're seeking]</span></p>
-    <p class="lead"><span class="todo">[Write 2 to 3 sentences about who you are, what you work on, and what you're looking for. Use only things that are true for you.]</span></p>
+    <p class="role">Software Engineer | Production Systems &bull; Backend &bull; Debugging &bull; Cloud</p>
+    <p class="loc">Greater Philadelphia, PA</p>
+    <p class="lead">
+      Software engineer with 2+ years of experience developing, debugging, deploying and optimizing
+      production software across backend services, APIs, cloud infrastructure, containers and
+      Linux-based systems. I work with Python, C++, SQL, FastAPI and PostgreSQL, and I'm comfortable
+      tracing issues across multiple layers of an unfamiliar system, making targeted changes and
+      validating them in realistic production-like environments.
+    </p>
     <div class="links">
+      <a class="primary" href="mailto:bquenasha@gmail.com">Get in touch</a>
       <a href="https://github.com/bquenasha01">GitHub</a>
       <a href="https://www.linkedin.com/in/quenasha-byrd-789253447">LinkedIn</a>
-      <a href="mailto:bquenasha@gmail.com">Email</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>2+ yrs</b><span>Professional experience</span></div>
+      <div class="stat"><b>&lt; 5 sec</b><span>Prior-auth processing latency</span></div>
+      <div class="stat"><b>95%+</b><span>Processing accuracy</span></div>
+      <div class="stat"><b>12&ndash;15</b><span>Engineers led</span></div>
     </div>
   </div>
 </header>
@@ -82,57 +149,189 @@
 <main class="wrap">
 
   <section id="projects">
-    <h2>Projects</h2>
+    <h2>Selected Work</h2>
     <div class="grid">
+
       <article class="card">
-        <h3><span class="todo">[Project name]</span></h3>
-        <p><span class="todo">[One or two sentences: what it does and which tools you used.]</span></p>
-        <a href="https://github.com/bquenasha01/REPO-NAME">View on GitHub &rarr;</a>
+        <h3>Prior-Authorization Processing System</h3>
+        <p>Multi-tenant production system that processes and validates prior-authorization requests in real time across Medicare, Medicaid and commercial healthcare environments. Delivers under 5-second latency at over 95% accuracy, with a configurable, rule-driven architecture for customer-specific logic. Validation covers eligibility, provider enrollment, duplicate detection and medical-code compliance.</p>
+        <div class="tags"><span>Multi-tenant</span><span>Rules engine</span><span>Enterprise integration</span><span>Healthcare</span></div>
       </article>
+
       <article class="card">
-        <h3><span class="todo">[Project name]</span></h3>
-        <p><span class="todo">[One or two sentences: what it does and which tools you used.]</span></p>
-        <a href="https://github.com/bquenasha01/REPO-NAME">View on GitHub &rarr;</a>
+        <h3>Document Processing &amp; Extraction Pipeline</h3>
+        <p>Processing pipelines for complex documents containing structured and unstructured data, handwriting, checkboxes and diagrams. Backed by PostgreSQL services and REST APIs that return document-level evidence to downstream applications.</p>
+        <div class="tags"><span>Python</span><span>FastAPI</span><span>Uvicorn</span><span>PostgreSQL</span><span>REST APIs</span></div>
       </article>
+
       <article class="card">
-        <h3><span class="todo">[Project name]</span></h3>
-        <p><span class="todo">[One or two sentences: what it does and which tools you used.]</span></p>
-        <a href="https://github.com/bquenasha01/REPO-NAME">View on GitHub &rarr;</a>
+        <h3>Automated Deployment &amp; Release Pipeline</h3>
+        <p>Automated deployment workflows built on RPM packaging, bundled dependencies and systemd-managed FastAPI/Uvicorn services. Azure DevOps CI/CD pipelines handle packaging, artifact publishing, container builds and controlled releases across Azure Web Apps, Azure Container Registry, Kubernetes, on-premise and government cloud environments.</p>
+        <div class="tags"><span>Azure DevOps</span><span>RPM</span><span>systemd</span><span>Docker</span><span>Kubernetes</span></div>
       </article>
+
+      <article class="card">
+        <h3>Observability &amp; Performance Test Environment</h3>
+        <p>Internal engineering environment on Rocky Linux/Alma Linux, physical servers, infrastructure nodes and NFS that reproduces client environments for realistic performance testing. Telegraf, InfluxDB and Chronograf surface system-, service- and infrastructure-level bottlenecks, and production microservices are profiled and tuned for latency.</p>
+        <div class="tags"><span>Telegraf</span><span>InfluxDB</span><span>Chronograf</span><span>Linux</span><span>Profiling</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Document Q&amp;A and Summarization App</h3>
+        <p>Python proof-of-concept application using LangChain and Streamlit for document question answering and content summarization, built during my time at Vulcan Materials Company.</p>
+        <div class="tags"><span>Python</span><span>LangChain</span><span>Streamlit</span></div>
+      </article>
+
+      <article class="card">
+        <h3>CrowdStrike Asset Data Integration</h3>
+        <p>REST API integration that collects and processes millions of asset records from CrowdStrike, with data-processing workflows for large datasets and dashboards for technical and non-technical stakeholders.</p>
+        <div class="tags"><span>REST API</span><span>Python</span><span>Data processing</span><span>Dashboards</span></div>
+      </article>
+
+      <article class="card">
+        <h3>Financial Chatbot</h3>
+        <p>Python-based financial chatbot built for the BCGX Gen AI Job Simulation (Forage), using NLP and data-processing techniques to extract insights from complex financial reports.</p>
+        <div class="tags"><span>Python</span><span>NLP</span><span>Chatbot</span></div>
+      </article>
+
+    </div>
+    <p style="margin-top:20px;color:var(--muted);font-size:0.95rem">More code and repositories on <a href="https://github.com/bquenasha01">GitHub</a>.</p>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+
+      <div class="job">
+        <h3>Technical Lead / Manager, Agentic Systems</h3>
+        <div class="co">Genzeon Platforms</div>
+        <div class="meta">November 2025 &ndash; Present &middot; Greater Philadelphia, PA</div>
+        <ul>
+          <li>Engineer production-grade software supporting real-time administrative workflows across Medicare, Medicaid and commercial healthcare environments.</li>
+          <li>Designed and implemented a multi-tenant system that processes and validates prior-authorization requests, with under 5-second latency and over 95% accuracy.</li>
+          <li>Built a configurable, rule-driven architecture supporting customer-specific logic and integration with existing enterprise systems.</li>
+          <li>Implemented validation workflows for eligibility, provider enrollment, duplicate detection and medical-code compliance.</li>
+          <li>Led 12&ndash;15 engineers across architecture, validation workflows, deployment and production engineering, and mentored them on system design, testing and deployment.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Full Stack AI/ML Platform Engineer</h3>
+        <div class="co">Genzeon</div>
+        <div class="meta">September 2024 &ndash; Present &middot; Exton, PA</div>
+        <ul>
+          <li>Develop and maintain production software for a hybrid platform spanning on-premise infrastructure, Microsoft Azure, Kubernetes and government cloud environments.</li>
+          <li>Build backend services with Python, FastAPI, Uvicorn, PostgreSQL and REST APIs for document processing, data extraction, retrieval and enterprise workflows.</li>
+          <li>Benchmark and optimize production microservices through profiling, latency analysis, runtime tuning and performance testing.</li>
+          <li>Perform Linux systems engineering, including kernel configuration, driver installation, runtime configuration and service integration.</li>
+          <li>Build Azure DevOps CI/CD pipelines and RPM/systemd deployment workflows, and deploy and troubleshoot services across Azure, Kubernetes and on-premise environments.</li>
+          <li>Implement observability with Telegraf, InfluxDB and Chronograf to find performance issues at the system, service and infrastructure level.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>AI Software Engineer</h3>
+        <div class="co">DataSense IT</div>
+        <div class="meta">February 2024 &ndash; September 2024</div>
+        <ul>
+          <li>Developed Python-based software solutions involving data processing and application workflows.</li>
+          <li>Worked across application and data layers to implement and evaluate technical solutions, and contributed to troubleshooting in data-driven workflows.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Data Science Engineer</h3>
+        <div class="co">Vulcan Materials Company</div>
+        <div class="meta">May 2023 &ndash; December 2023 &middot; Houston, TX</div>
+        <ul>
+          <li>Built a Python proof of concept with LangChain and Streamlit for document question answering and summarization.</li>
+          <li>Integrated a REST API to collect and process millions of asset records from CrowdStrike.</li>
+          <li>Developed data-processing workflows, dashboards and reporting for technical and non-technical stakeholders, working in Agile cross-functional teams.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Machine Learning Research Assistant</h3>
+        <div class="co">University of Houston</div>
+        <div class="meta">August 2022 &ndash; May 2023 &middot; Houston, TX</div>
+        <ul>
+          <li>Developed Python and SQL workflows for analyzing academic and operational datasets.</li>
+          <li>Built interactive dashboards for tracking performance metrics and worked with academic departments to turn requirements into technical solutions.</li>
+        </ul>
+      </div>
+
     </div>
   </section>
 
   <section id="skills">
     <h2>Skills</h2>
-    <div class="tags">
-      <span class="todo">[Skill]</span>
-      <span class="todo">[Skill]</span>
-      <span class="todo">[Skill]</span>
-      <span class="todo">[Skill]</span>
-      <span class="todo">[Skill]</span>
-    </div>
-  </section>
-
-  <section id="experience">
-    <h2>Experience</h2>
-    <div class="card">
-      <h3><span class="todo">[Job title]</span>, <span class="todo">[Company]</span></h3>
-      <p><span class="todo">[Dates]</span></p>
-      <p><span class="todo">[What you did there, in one or two sentences.]</span></p>
+    <div class="skills">
+      <div>
+        <h3>Languages</h3>
+        <div class="tags"><span>Python</span><span>C++</span><span>SQL</span><span>Bash</span></div>
+      </div>
+      <div>
+        <h3>Backend &amp; APIs</h3>
+        <div class="tags"><span>FastAPI</span><span>Uvicorn</span><span>REST APIs</span><span>PostgreSQL</span><span>API Integration</span></div>
+      </div>
+      <div>
+        <h3>Cloud &amp; Infrastructure</h3>
+        <div class="tags"><span>Microsoft Azure</span><span>Azure Web Apps</span><span>Azure Container Registry</span><span>Kubernetes</span><span>Docker</span><span>Linux</span><span>On-Premise</span></div>
+      </div>
+      <div>
+        <h3>CI/CD &amp; DevOps</h3>
+        <div class="tags"><span>Azure DevOps</span><span>Automated Builds</span><span>Container Builds</span><span>RPM Packaging</span><span>Release Automation</span><span>systemd</span></div>
+      </div>
+      <div>
+        <h3>Observability</h3>
+        <div class="tags"><span>Telegraf</span><span>InfluxDB</span><span>Chronograf</span><span>Performance Monitoring</span></div>
+      </div>
+      <div>
+        <h3>Engineering Practice</h3>
+        <div class="tags"><span>Debugging</span><span>Refactoring</span><span>Performance Optimization</span><span>System Design</span><span>API Design</span><span>Data Structures &amp; Algorithms</span><span>OOP</span><span>Git</span><span>Agile</span></div>
+      </div>
+      <div>
+        <h3>Testing &amp; Validation</h3>
+        <div class="tags"><span>Production Validation</span><span>Integration Testing</span><span>Performance Testing</span><span>Deployment Validation</span></div>
+      </div>
     </div>
   </section>
 
   <section id="education">
-    <h2>Education</h2>
-    <div class="card">
-      <h3><span class="todo">[Degree]</span>, <span class="todo">[School]</span></h3>
-      <p><span class="todo">[Years]</span></p>
+    <h2>Education &amp; More</h2>
+    <div class="two">
+      <article class="card">
+        <h3>Master's Degree, Data Science</h3>
+        <p class="when">University of Houston &middot; 2022 &ndash; 2023</p>
+      </article>
+      <article class="card">
+        <h3>Bachelor's Degree, Computer Engineering</h3>
+        <p class="when">Teegala Krishna Reddy Engineering College</p>
+      </article>
+      <article class="card">
+        <h3>Writing</h3>
+        <p class="when">Medium &middot; October 2023 &ndash; Present</p>
+        <p style="margin-top:8px">Data Science and Machine Learning evangelist. I write technical articles, tutorials and case studies on software development, deployment strategies and data processing.</p>
+      </article>
+      <article class="card">
+        <h3>Honors, Certifications &amp; Languages</h3>
+        <ul class="plain">
+          <li>Dean's Master Scholarship</li>
+          <li>Blue Cross CPR Certification</li>
+          <li>English, Hindi, Telugu (native/bilingual)</li>
+        </ul>
+      </article>
     </div>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>The best way to reach me is by <a href="mailto:bquenasha@gmail.com" style="color:var(--accent)">email</a> or on <a href="https://www.linkedin.com/in/quenasha-byrd-789253447" style="color:var(--accent)">LinkedIn</a>.</p>
+    <p style="color:var(--muted);max-width:60ch">I'm open to software engineering roles focused on backend, production systems and cloud. The best way to reach me is by email or LinkedIn.</p>
+    <div class="links" style="margin-top:16px">
+      <a class="primary" href="mailto:bquenasha@gmail.com">bquenasha@gmail.com</a>
+      <a href="https://www.linkedin.com/in/quenasha-byrd-789253447">LinkedIn</a>
+      <a href="https://github.com/bquenasha01">GitHub</a>
+    </div>
   </section>
 
 </main>
